@@ -28,6 +28,7 @@ export default function ExamPage({ onNavigate }: Props) {
   const [, setActiveSubject] = useState<SubjectName>('English');
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+
   // Timer
   useEffect(() => {
     if (started && !submitted && timeLeft > 0) {
@@ -64,14 +65,12 @@ export default function ExamPage({ onNavigate }: Props) {
   }, [started, submitted]);
 
   const submittingRef = useRef(false); 
-  if (submittingRef.current) return;
-submittingRef.current = true;
-
+  
   // Replace your existing handleSubmit with this:
 const handleSubmit = useCallback(async (autoSubmit = false) => {
   // 1. Prevent multiple clicks/submissions
-  if (submitted || submittingRef.current) return;
-  submittingRef.current = true;
+    submittingRef.current = true;
+
 
   if (timerRef.current) clearInterval(timerRef.current);
 
